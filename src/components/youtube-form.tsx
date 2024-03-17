@@ -33,10 +33,23 @@ export const YoutubeForm = () => {
                 value:  /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                 message: 'This is not an email'
               },
-              // TODO: How to validate if u only want admin email and not from bad domain
-              validate: (val) => {
-                return val !== 'admin@gmail.com' && "This email does not have access"
+              validate: {
+                notBlackListed: (val) => {
+                  return (
+                    !val.endsWith('badmail.com') ||
+                    "This domain is not supported"
+                  )
+                  },
+                notAdmin: (val) => {
+                return (
+                  val === 'admin@gmail.com' ||
+                  "Only admin email allow"
+                )
+                },
+              
               }
+              // admin@gmail.com
+          
             })}  className='bg-slate-600'/>
              <p className='text-red-400'>{errors.email?.message}</p>
 
