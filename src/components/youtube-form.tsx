@@ -23,12 +23,22 @@ export const YoutubeForm = () => {
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
             <label htmlFor="username">Username</label>
             <input type="text" id='username' {...register('username', {
-              required: 'Put username!' //or pattern
+              required: 'Put username!'
             })} className='bg-slate-600'/>
             <p className='text-red-400'>{errors.username?.message}</p>
 
             <label htmlFor="email">Email</label>
-            <input type="email" id='email' {...register('email')}  className='bg-slate-600'/>
+            <input type="email" id='email' {...register('email', {
+              pattern: {
+                value:  /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: 'This is not an email'
+              },
+              // TODO: How to validate if u only want admin email and not from bad domain
+              validate: (val) => {
+                return val !== 'admin@gmail.com' && "This email does not have access"
+              }
+            })}  className='bg-slate-600'/>
+             <p className='text-red-400'>{errors.email?.message}</p>
 
             <label htmlFor="channel">Channel</label>
             <input type="text" id='channel' {...register('channel')} className='bg-slate-600'/>
