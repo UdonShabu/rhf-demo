@@ -8,9 +8,14 @@ export const YoutubeForm = () => {
     const form = useForm()
     const {register, control} = form
 
+    const onSubmit = () => {
+      // TODO: How can u submit and log data out with correct a type?
+      console.log('Form submitted')
+    }
+
   return (
     <div>
-        <form action="">
+        <form onSubmit={}>
             <label htmlFor="username">Username</label>
             <input type="text" id='username' {...register('username')} />
 
