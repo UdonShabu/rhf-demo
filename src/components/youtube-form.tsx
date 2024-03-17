@@ -1,9 +1,9 @@
+'use client'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 
 
 export const YoutubeForm = () => {
-    // TODO: Fix this error, why it happen?
     const form = useForm()
 
   return (
