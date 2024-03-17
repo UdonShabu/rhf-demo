@@ -5,6 +5,9 @@ import { useForm } from 'react-hook-form'
 
 export const YoutubeForm = () => {
     const form = useForm()
+    const {register} = form
+    // TODO: Connect this to each field with a short way
+    const {name, ref, onBlur, onChange} = register('username')
 
   return (
     <div>
