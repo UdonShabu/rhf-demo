@@ -12,6 +12,7 @@ type FormValues = {
 export const YoutubeForm = () => {
     const form = useForm<FormValues>()
     const {register, control, handleSubmit, formState} = form
+    const {errors} = formState
 
     const onSubmit = (data: FormValues) => {
       console.log('Form submitted', data)
@@ -19,13 +20,11 @@ export const YoutubeForm = () => {
 
   return (
     <div>
-      {/* TODO: Tell browser to use react hook form validation instead */}
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
             <label htmlFor="username">Username</label>
             <input type="text" id='username' {...register('username', {
               required: 'Put username!' //or pattern
             })} className='bg-slate-600'/>
-            {/* FIXME: fix this errors */}
             <p className='text-red-400'>{errors.username?.message}</p>
 
             <label htmlFor="email">Email</label>
